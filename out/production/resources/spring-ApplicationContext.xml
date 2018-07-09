@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="userCheckService" class="cc.home.pratice.javabean.MockUserCheckServiceImpl">
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+
+    <bean id="login" class="cc.home.pratice.javabean.LoginBean">
+        <constructor-arg name="userCheckService" ref="userCheckService"/>
+        <property name="serviceName" value="${service-name}"/>
+        <property name="version" value="${version}"/>
+    </bean>
+
+    <context:property-placeholder
+            location="classpath*:app.properties"
+            ignore-unresolvable="true" />
+
+    <import resource="application-ds.xml"/>
+    
+    <context:component-scan base-package="cc.home.pratice.scan"/>
+
+    <bean class="cc.home.pratice.MyBeanFactoryPostProcessor"/>
+</beans>

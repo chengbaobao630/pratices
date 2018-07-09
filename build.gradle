@@ -1,0 +1,28 @@
+group 'cc.home'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://central.maven.org/maven2/" }
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.0'
+    compile 'cc.home:servlet-pracise:1.0-SNAPSHOT'
+    compile 'org.springframework:spring-context:5.0.4.RELEASE'
+    compile 'org.springframework:spring-core:5.0.4.RELEASE'
+    compile 'org.springframework:spring-beans:5.0.4.RELEASE'
+    compile 'com.google.guava:guava:24.0-jre'
+    compile 'io.netty:netty-all:4.1.22.Final'
+}
